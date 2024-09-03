@@ -1,4 +1,4 @@
-name: End to End CI/CD workflow for Java Applicaton with Maven, Sonar and k8s Intergation
+name: End to End CI/CD workflow for Java Application with Maven, Sonar, and k8s Integration
 
 on:
   push:
@@ -15,18 +15,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to the latest version
 
-    - name: Java jdk setup
-      uses: actions/setup-java@v1
+    - name: Java JDK setup
+      uses: actions/setup-java@v3  # Updated to the latest version
       with:
         java-version: 17
 
-    - name: maven target # change accordingly
+    - name: Maven target
       run: mvn clean install
 
     - name: Perform analysis on Sonar Qube
-      uses: sonarsource/sonarcloud-github-action@v1
+      uses: sonarsource/sonarcloud-github-action@v2  # Updated to the latest version
       with:
         sonarcloud.organization: <name of your org>
         sonarcloud.projectKey: <key>
@@ -40,10 +40,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to the latest version
 
     - name: Deploy to k8s
-      uses: stefanzweifel/k8s-action@v2.0.0
+      uses: stefanzweifel/k8s-action@v2.0.0  # Check for newer versions if available
       with:
         args: apply -f kubernetes/
       env:
